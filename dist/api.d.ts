@@ -15,6 +15,193 @@ import { RequestArgs, BaseAPI } from './base';
 /**
  *
  * @export
+ * @interface CompanyProfile
+ */
+export interface CompanyProfile {
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    symbol: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    price: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    beta?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    volAvg?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    mktCap?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    lastDiv?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    range?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    changes?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    companyName: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    currency: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    isin?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    cusip?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    exchange: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    exchangeShortName: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    industry: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    website?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    description: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    ceo?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    sector: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    country?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    fullTimeEmployees?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    phone?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    address?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    state?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    zip?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    dcfDiff?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyProfile
+     */
+    dcf?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    image?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyProfile
+     */
+    ipoDate?: string;
+}
+/**
+ *
+ * @export
  * @interface EndOfDayPrice
  */
 export interface EndOfDayPrice {
@@ -190,6 +377,65 @@ export interface Symbol {
      * @memberof Symbol
      */
     exchange: string;
+}
+/**
+ * CompanyValuationApi - axios parameter creator
+ * @export
+ */
+export declare const CompanyValuationApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get the Company profile
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    profile: (symbol: string, options?: any) => Promise<RequestArgs>;
+};
+/**
+ * CompanyValuationApi - functional programming interface
+ * @export
+ */
+export declare const CompanyValuationApiFp: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get the Company profile
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    profile(symbol: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompanyProfile>>>;
+};
+/**
+ * CompanyValuationApi - factory interface
+ * @export
+ */
+export declare const CompanyValuationApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     *
+     * @summary Get the Company profile
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    profile(symbol: string, options?: any): AxiosPromise<Array<CompanyProfile>>;
+};
+/**
+ * CompanyValuationApi - object-oriented interface
+ * @export
+ * @class CompanyValuationApi
+ * @extends {BaseAPI}
+ */
+export declare class CompanyValuationApi extends BaseAPI {
+    /**
+     *
+     * @summary Get the Company profile
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompanyValuationApi
+     */
+    profile(symbol: string, options?: any): Promise<import("axios").AxiosResponse<CompanyProfile[]>>;
 }
 /**
  * HistoryApi - axios parameter creator

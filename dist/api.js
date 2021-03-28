@@ -25,13 +25,116 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListApi = exports.ListApiFactory = exports.ListApiFp = exports.ListApiAxiosParamCreator = exports.HistoryApi = exports.HistoryApiFactory = exports.HistoryApiFp = exports.HistoryApiAxiosParamCreator = void 0;
+exports.ListApi = exports.ListApiFactory = exports.ListApiFp = exports.ListApiAxiosParamCreator = exports.HistoryApi = exports.HistoryApiFactory = exports.HistoryApiFp = exports.HistoryApiAxiosParamCreator = exports.CompanyValuationApi = exports.CompanyValuationApiFactory = exports.CompanyValuationApiFp = exports.CompanyValuationApiAxiosParamCreator = void 0;
 const axios_1 = __importDefault(require("axios"));
 // Some imports not used depending on template conditions
 // @ts-ignore
 const common_1 = require("./common");
 // @ts-ignore
 const base_1 = require("./base");
+/**
+ * CompanyValuationApi - axios parameter creator
+ * @export
+ */
+const CompanyValuationApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         *
+         * @summary Get the Company profile
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profile: (symbol, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'symbol' is not null or undefined
+            common_1.assertParamExists('profile', 'symbol', symbol);
+            const localVarPath = `/profile/{symbol}`
+                .replace(`{${"symbol"}}`, encodeURIComponent(String(symbol)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_key required
+            yield common_1.setApiKeyToObject(localVarQueryParameter, "apikey", configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: common_1.toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+exports.CompanyValuationApiAxiosParamCreator = CompanyValuationApiAxiosParamCreator;
+/**
+ * CompanyValuationApi - functional programming interface
+ * @export
+ */
+const CompanyValuationApiFp = function (configuration) {
+    const localVarAxiosParamCreator = exports.CompanyValuationApiAxiosParamCreator(configuration);
+    return {
+        /**
+         *
+         * @summary Get the Company profile
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profile(symbol, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.profile(symbol, options);
+                return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
+    };
+};
+exports.CompanyValuationApiFp = CompanyValuationApiFp;
+/**
+ * CompanyValuationApi - factory interface
+ * @export
+ */
+const CompanyValuationApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = exports.CompanyValuationApiFp(configuration);
+    return {
+        /**
+         *
+         * @summary Get the Company profile
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profile(symbol, options) {
+            return localVarFp.profile(symbol, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+exports.CompanyValuationApiFactory = CompanyValuationApiFactory;
+/**
+ * CompanyValuationApi - object-oriented interface
+ * @export
+ * @class CompanyValuationApi
+ * @extends {BaseAPI}
+ */
+class CompanyValuationApi extends base_1.BaseAPI {
+    /**
+     *
+     * @summary Get the Company profile
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompanyValuationApi
+     */
+    profile(symbol, options) {
+        return exports.CompanyValuationApiFp(this.configuration).profile(symbol, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+exports.CompanyValuationApi = CompanyValuationApi;
 /**
  * HistoryApi - axios parameter creator
  * @export
