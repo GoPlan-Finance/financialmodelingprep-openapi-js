@@ -64,10 +64,14 @@ const HistoryApiAxiosParamCreator = function (configuration) {
             // authentication api_key required
             yield common_1.setApiKeyToObject(localVarQueryParameter, "apikey", configuration);
             if (from !== undefined) {
-                localVarQueryParameter['from'] = from;
+                localVarQueryParameter['from'] = (from instanceof Date) ?
+                    from.toISOString().substr(0, 10) :
+                    from;
             }
             if (to !== undefined) {
-                localVarQueryParameter['to'] = to;
+                localVarQueryParameter['to'] = (to instanceof Date) ?
+                    to.toISOString().substr(0, 10) :
+                    to;
             }
             common_1.setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
