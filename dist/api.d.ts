@@ -343,13 +343,6 @@ export interface OHVCVPrice {
 /**
  *
  * @export
- * @interface OHVCVPrices
- */
-export interface OHVCVPrices extends Array<object> {
-}
-/**
- *
- * @export
  * @interface Symbol
  */
 export interface Symbol {
@@ -485,7 +478,7 @@ export declare const HistoryApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<object>>>;
+    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OHVCVPrice>>>;
 };
 /**
  * HistoryApi - factory interface
@@ -510,7 +503,7 @@ export declare const HistoryApiFactory: (configuration?: Configuration, basePath
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): AxiosPromise<Array<object>>;
+    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): AxiosPromise<Array<OHVCVPrice>>;
 };
 /**
  * HistoryApi - object-oriented interface
@@ -539,7 +532,7 @@ export declare class HistoryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): Promise<import("axios").AxiosResponse<object[]>>;
+    intraDayPrices(symbol: string, resolution: '1min' | '5min' | '15min' | '30min' | '1hour' | '4hour', options?: any): Promise<import("axios").AxiosResponse<OHVCVPrice[]>>;
 }
 /**
  * ListApi - axios parameter creator
