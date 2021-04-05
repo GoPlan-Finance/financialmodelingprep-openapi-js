@@ -202,6 +202,145 @@ export interface CompanyProfile {
 /**
  *
  * @export
+ * @interface CompanyQuote
+ */
+export interface CompanyQuote {
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyQuote
+     */
+    symbol: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyQuote
+     */
+    name: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    price: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    changesPercentage: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    change: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    dayLow: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    dayHigh: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    yearHigh: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    yearLow: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    marketCap: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    priceAvg50: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    priceAvg200: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    volume: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    avgVolume: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyQuote
+     */
+    exchange: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    open: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    previousClose: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    eps: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    pe: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CompanyQuote
+     */
+    earningsAnnouncement: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    sharesOutstanding?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CompanyQuote
+     */
+    timestamp: number;
+}
+/**
+ *
+ * @export
  * @interface EndOfDayPrice
  */
 export interface EndOfDayPrice {
@@ -384,6 +523,14 @@ export declare const CompanyValuationApiAxiosParamCreator: (configuration?: Conf
      * @throws {RequiredError}
      */
     profile: (symbol: string, options?: any) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Get the Company Quote
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    quote: (symbol: string, options?: any) => Promise<RequestArgs>;
 };
 /**
  * CompanyValuationApi - functional programming interface
@@ -398,6 +545,14 @@ export declare const CompanyValuationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     profile(symbol: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompanyProfile>>>;
+    /**
+     *
+     * @summary Get the Company Quote
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    quote(symbol: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompanyQuote>>>;
 };
 /**
  * CompanyValuationApi - factory interface
@@ -412,6 +567,14 @@ export declare const CompanyValuationApiFactory: (configuration?: Configuration,
      * @throws {RequiredError}
      */
     profile(symbol: string, options?: any): AxiosPromise<Array<CompanyProfile>>;
+    /**
+     *
+     * @summary Get the Company Quote
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    quote(symbol: string, options?: any): AxiosPromise<Array<CompanyQuote>>;
 };
 /**
  * CompanyValuationApi - object-oriented interface
@@ -429,6 +592,15 @@ export declare class CompanyValuationApi extends BaseAPI {
      * @memberof CompanyValuationApi
      */
     profile(symbol: string, options?: any): Promise<import("axios").AxiosResponse<CompanyProfile[]>>;
+    /**
+     *
+     * @summary Get the Company Quote
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompanyValuationApi
+     */
+    quote(symbol: string, options?: any): Promise<import("axios").AxiosResponse<CompanyQuote[]>>;
 }
 /**
  * HistoryApi - axios parameter creator

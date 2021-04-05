@@ -69,6 +69,37 @@ const CompanyValuationApiAxiosParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         }),
+        /**
+         *
+         * @summary Get the Company Quote
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quote: (symbol, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'symbol' is not null or undefined
+            common_1.assertParamExists('quote', 'symbol', symbol);
+            const localVarPath = `/quote/{symbol}`
+                .replace(`{${"symbol"}}`, encodeURIComponent(String(symbol)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_key required
+            yield common_1.setApiKeyToObject(localVarQueryParameter, "apikey", configuration);
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: common_1.toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
     };
 };
 exports.CompanyValuationApiAxiosParamCreator = CompanyValuationApiAxiosParamCreator;
@@ -92,6 +123,19 @@ const CompanyValuationApiFp = function (configuration) {
                 return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
+        /**
+         *
+         * @summary Get the Company Quote
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quote(symbol, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.quote(symbol, options);
+                return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
     };
 };
 exports.CompanyValuationApiFp = CompanyValuationApiFp;
@@ -111,6 +155,16 @@ const CompanyValuationApiFactory = function (configuration, basePath, axios) {
          */
         profile(symbol, options) {
             return localVarFp.profile(symbol, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Get the Company Quote
+         * @param {string} symbol Name of ticker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quote(symbol, options) {
+            return localVarFp.quote(symbol, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -132,6 +186,17 @@ class CompanyValuationApi extends base_1.BaseAPI {
      */
     profile(symbol, options) {
         return exports.CompanyValuationApiFp(this.configuration).profile(symbol, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @summary Get the Company Quote
+     * @param {string} symbol Name of ticker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompanyValuationApi
+     */
+    quote(symbol, options) {
+        return exports.CompanyValuationApiFp(this.configuration).quote(symbol, options).then((request) => request(this.axios, this.basePath));
     }
 }
 exports.CompanyValuationApi = CompanyValuationApi;
