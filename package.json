@@ -38,6 +38,6 @@
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.2.3",
     "axios": "^0.26.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.0.0"
   }
 }
